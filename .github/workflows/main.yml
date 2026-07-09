@@ -7,14 +7,13 @@ on:
 
 jobs:
   build:
-    name: Build Windows Mod
+    name: Build
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Build Mod File
+      - name: Build Mod
         uses: geode-sdk/build-geode-mod@main
         with:
           target: Windows
