@@ -13,7 +13,7 @@ jobs:
       matrix:
         config:
           - name: Windows
-            os: windows-2022
+            os: windows-latest
 
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -22,7 +22,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build Mod
+      - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
+        id: build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          combine: true
+          name: Geometry Apps Windows Mod
+          path: ${{ steps.build.outputs.build-output }}
