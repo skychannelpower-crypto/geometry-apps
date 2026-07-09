@@ -18,7 +18,7 @@ jobs:
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
 
-    steps:
+- data: checkout
       - name: Checkout
         uses: actions/checkout@v4
 
