@@ -7,13 +7,18 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build Mod
     runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Mod
+      - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
+        id: build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          target: Windows
+          name: geometry-apps-windows
+          path: ${{ steps.build.outputs.build-output }}
