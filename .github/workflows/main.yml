@@ -4,30 +4,17 @@ on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - name: Windows
-            os: windows-latest
-
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+    name: Build Windows Mod
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Build the mod
+      - name: Build Mod File
         uses: geode-sdk/build-geode-mod@main
-        id: build
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
         with:
-          name: Geometry Apps Windows Mod
-          path: ${{ steps.build.outputs.build-output }}
+          target: Windows
